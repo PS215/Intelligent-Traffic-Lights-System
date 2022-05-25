@@ -1,4 +1,4 @@
-package com.ps215.capstoneITLS.ui.history
+package com.ps215.capstoneITLS.ui.map
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,12 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.ps215.capstoneITLS.R
-import com.ps215.capstoneITLS.databinding.FragmentHistoryBinding
+import com.ps215.capstoneITLS.databinding.FragmentMapBinding
 
-class HistoryFragment : Fragment() {
+class MapFragment : Fragment() {
 
-    private var _binding: FragmentHistoryBinding? = null
+    private var _binding: FragmentMapBinding? = null
 
     private val binding get() = _binding!!
 
@@ -22,9 +21,9 @@ class HistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this)[HistoryViewModel::class.java]
+            ViewModelProvider(this)[MapViewModel::class.java]
 
-        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        _binding = FragmentMapBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textHistory

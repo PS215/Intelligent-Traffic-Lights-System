@@ -1,12 +1,12 @@
-package com.ps215.capstoneITLS.ui.history
+package com.ps215.capstoneITLS.ui.map
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HistoryViewModel : ViewModel() {
+class MapViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
-        value = "This is history Fragment"
+        value = "This is map Fragment"
     }
     val text: LiveData<String> = _text
 }
