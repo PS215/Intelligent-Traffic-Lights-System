@@ -33,12 +33,6 @@ class ProfileFragment : Fragment() {
             ViewModelProvider(this)[ProfileViewModel::class.java]
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-//        val textView: TextView = binding.textProfile
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
 
         auth = Firebase.auth
         val firebaseUser = auth.currentUser
@@ -55,7 +49,7 @@ class ProfileFragment : Fragment() {
             signOut()
         }
 
-        return root
+        return binding.root
     }
 
     private fun showData(){
