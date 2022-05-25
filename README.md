@@ -2,9 +2,9 @@
 PS215's Bangkit 2022 Capstone Android Repository
 
 ### Team
-(ML) M2007F0787 - Vilantino Fernandion - Universitas Dian Nuswantoro
-(ML) M2279F2411 - Yonix Adhiraksa - Universitas Negeri Malang
-(MD) A2279F2410 - Muhammad Amjad Aziz - Universitas Negeri Malang
-(MD) A2007F0789 - Dinda Nur Mestylera Kirana - Universitas Dian Nuswantoro
-(CC) C2291F2471 - Alita Eugenia  - Universitas Pasundan
-(CC) C2291F2469 - Irfa\'U Darajat - Universitas Pasundan
+- Vilantino Fernandion(M2007F0787) - Universitas Dian Nuswantoro
+- Yonix Adhiraksa(M2279F2411) - Universitas Negeri Malang
+- Muhammad Amjad Aziz(A2279F2410) - Universitas Negeri Malang
+- Dinda Nur Mestylera Kirana(A2007F0789) - Universitas Dian Nuswantoro
+- Alita Eugenia(C2291F2471)  - Universitas Pasundan
+- Irfa\'U Darajat(C2291F2469) - Universitas Pasundan
