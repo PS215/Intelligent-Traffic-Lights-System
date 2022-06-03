@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -16,18 +17,19 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.ps215.capstoneITLS.R
+import com.ps215.capstoneITLS.database.Traffic
 import com.ps215.capstoneITLS.databinding.FragmentMapBinding
+import com.ps215.capstoneITLS.ui.ViewModelFactory
 
 class MapFragment : Fragment() {
-
-    private lateinit var mMap: GoogleMap
 
     private var _binding: FragmentMapBinding? = null
 
     private val binding get() = _binding!!
+
+    private lateinit var mapViewModel: MapViewModel
 
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
@@ -54,35 +56,30 @@ class MapFragment : Fragment() {
         ) {
             googleMap.isMyLocationEnabled = true
         } else {
-            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+            requestPermissionLauncher(googleMap).launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
 
-
-        val traffic1 = LatLng(-7.7828, 110.3608)
-
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(traffic1, 13f))
-        googleMap.addMarker(MarkerOptions().position(traffic1).title("Traffic Light 1").snippet("Jl. Tentara Pelajar"))
-
+        setupViewModel(googleMap)
 
     }
 
     @SuppressLint("MissingPermission")
-    private val requestPermissionLauncher =
+    private val requestPermissionLauncher  = { googleMap : GoogleMap ->
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
-                mMap.isMyLocationEnabled = true
+                googleMap.isMyLocationEnabled = true
             }
         }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[MapViewModel::class.java]
 
         _binding = FragmentMapBinding.inflate(inflater, container, false)
 
@@ -100,4 +97,32 @@ class MapFragment : Fragment() {
         _binding = null
     }
 
+    private fun setupViewModel(googleMap: GoogleMap) {
+        val factory = ViewModelFactory.getInstance(requireContext())
+        mapViewModel = ViewModelProvider(this, factory)[MapViewModel::class.java]
+        mapViewModel.getAllTraffic()
+        getTraffic(googleMap)
+    }
+
+    private fun getTraffic(googleMap: GoogleMap) {
+        mapViewModel.getAllTraffic().observe(viewLifecycleOwner) {
+            for (i in it.indices){
+                googleMap.addMarker(MarkerOptions()
+                    .position(LatLng(it[i].lat, it[i].lon))
+                    .title(it[i].name)
+                    .snippet(it[i].road))
+            }
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(it[0].lat, it[0].lon), 13f))
+
+        }
+    }
+
+    private fun showSelectedItem(data: Traffic) {
+//        val intent = Intent (this@MainActivity, DetailUserActivity::class.java)
+//        intent.putExtra(DetailUserActivity.EXTRA_AVATAR, user.avatarUrl)
+//        intent.putExtra(DetailUserActivity.EXTRA_ID, user.id)
+//        intent.putExtra(DetailUserActivity.EXTRA_USERNAME, user.login)
+//        startActivity(intent)
+        Toast.makeText(activity, data.name + " Selected" , Toast.LENGTH_SHORT).show()
+    }
 }

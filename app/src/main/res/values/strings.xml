@@ -4,4 +4,7 @@
     <string name="title_map">Map</string>
     <string name="title_profile">Profile</string>
     <string name="sign_out">Sign Out</string>
+    <string name="traffic_name">Traffic Name</string>
+    <string name="road_name">Road Name</string>
+    <string name="traffic_light_list">Traffic Light List</string>
 </resources>

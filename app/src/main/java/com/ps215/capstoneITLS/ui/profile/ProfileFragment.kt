@@ -1,13 +1,11 @@
 package com.ps215.capstoneITLS.ui.profile
 
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -29,8 +27,6 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[ProfileViewModel::class.java]
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 

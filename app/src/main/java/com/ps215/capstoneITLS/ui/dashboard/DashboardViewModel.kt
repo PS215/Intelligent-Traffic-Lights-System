@@ -1,12 +1,10 @@
 package com.ps215.capstoneITLS.ui.dashboard
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ps215.capstoneITLS.database.Repository
+import com.ps215.capstoneITLS.database.Traffic
 
-class DashboardViewModel : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
-    val text: LiveData<String> = _text
+class DashboardViewModel(private val trafficRepository: Repository) : ViewModel() {
+    fun getAllTraffic(): LiveData<List<Traffic>> = trafficRepository.getAllTraffic()
 }
