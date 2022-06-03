@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "509123017261",
+    "project_id": "itls-b3a49",
+    "storage_bucket": "itls-b3a49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509123017261:android:3f25ea7179c56258de56a4",
+        "android_client_info": {
+          "package_name": "com.ps215.capstoneITLS"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509123017261-ma7d8dn9i8vnp9nk5pi2gcfbmpjhdji3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5ZRFaY_9BmcpBjoJmSHcUvHPNfgu7Xw8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509123017261-ma7d8dn9i8vnp9nk5pi2gcfbmpjhdji3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
