@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ps215.capstoneITLS.database.model.TrafficList
+import com.ps215.capstoneITLS.data.model.TrafficList
 import com.ps215.capstoneITLS.databinding.FragmentDashboardBinding
 import com.ps215.capstoneITLS.ui.ViewModelFactory
 import com.ps215.capstoneITLS.ui.trafficdetail.TrafficDetailActivity

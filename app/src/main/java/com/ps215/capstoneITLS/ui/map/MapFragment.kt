@@ -17,10 +17,9 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.ps215.capstoneITLS.R
-import com.ps215.capstoneITLS.database.model.TrafficList
+import com.ps215.capstoneITLS.data.model.TrafficList
 import com.ps215.capstoneITLS.databinding.FragmentMapBinding
 import com.ps215.capstoneITLS.ui.ViewModelFactory
 

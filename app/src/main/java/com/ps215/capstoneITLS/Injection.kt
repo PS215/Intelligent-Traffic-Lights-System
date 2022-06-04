@@ -1,7 +1,6 @@
 package com.ps215.capstoneITLS
 
-import android.content.Context
-import com.ps215.capstoneITLS.database.Repository
+import com.ps215.capstoneITLS.data.Repository
 
 object Injection {
     fun provideRepository(): Repository {

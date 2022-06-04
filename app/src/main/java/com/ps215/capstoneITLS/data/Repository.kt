@@ -1,11 +1,11 @@
-package com.ps215.capstoneITLS.database
+package com.ps215.capstoneITLS.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ps215.capstoneITLS.api.ApiConfig
-import com.ps215.capstoneITLS.database.model.TrafficList
-import com.ps215.capstoneITLS.database.model.TrafficResponse
+import com.ps215.capstoneITLS.data.model.TrafficList
+import com.ps215.capstoneITLS.data.model.TrafficResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

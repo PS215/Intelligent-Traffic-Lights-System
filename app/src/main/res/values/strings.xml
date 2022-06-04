@@ -7,4 +7,5 @@
     <string name="traffic_name">Traffic Name</string>
     <string name="road_name">Road Name</string>
     <string name="traffic_light_list">Traffic Light List</string>
+    <string name="traffic_detail_activity">this is Traffic Detail Activity</string>
 </resources>

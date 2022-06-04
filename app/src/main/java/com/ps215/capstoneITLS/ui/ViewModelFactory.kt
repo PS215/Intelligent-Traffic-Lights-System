@@ -1,10 +1,9 @@
 package com.ps215.capstoneITLS.ui
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ps215.capstoneITLS.Injection
-import com.ps215.capstoneITLS.database.Repository
+import com.ps215.capstoneITLS.data.Repository
 import com.ps215.capstoneITLS.ui.dashboard.DashboardViewModel
 import com.ps215.capstoneITLS.ui.map.MapViewModel
 
