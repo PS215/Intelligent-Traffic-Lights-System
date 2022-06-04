@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        supportActionBar?.hide()
-
         auth = Firebase.auth
         val firebaseUser = auth.currentUser
         if (firebaseUser == null) {

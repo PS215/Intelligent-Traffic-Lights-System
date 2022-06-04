@@ -3,25 +3,27 @@ package com.ps215.capstoneITLS.ui.map
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.ps215.capstoneITLS.R
-import com.ps215.capstoneITLS.database.Traffic
+import com.ps215.capstoneITLS.database.model.TrafficList
 import com.ps215.capstoneITLS.databinding.FragmentMapBinding
 import com.ps215.capstoneITLS.ui.ViewModelFactory
+
 
 class MapFragment : Fragment() {
 
@@ -98,26 +100,30 @@ class MapFragment : Fragment() {
     }
 
     private fun setupViewModel(googleMap: GoogleMap) {
-        val factory = ViewModelFactory.getInstance(requireContext())
+        val factory = ViewModelFactory.getInstance()
         mapViewModel = ViewModelProvider(this, factory)[MapViewModel::class.java]
-        mapViewModel.getAllTraffic()
+        mapViewModel.setTraffic()
         getTraffic(googleMap)
     }
 
     private fun getTraffic(googleMap: GoogleMap) {
-        mapViewModel.getAllTraffic().observe(viewLifecycleOwner) {
+        mapViewModel.getTraffic().observe(viewLifecycleOwner) {
             for (i in it.indices){
                 googleMap.addMarker(MarkerOptions()
-                    .position(LatLng(it[i].lat, it[i].lon))
+                    .position(LatLng(it[i].latitude.toDouble(), it[i].longitude.toDouble()))
                     .title(it[i].name)
-                    .snippet(it[i].road))
-            }
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(it[0].lat, it[0].lon), 13f))
+                    .snippet(it[i].address))
 
+                googleMap.setOnInfoWindowClickListener() {
+                    Toast.makeText(activity, it.title + " Selected" , Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(it[0].latitude.toDouble(), it[0].longitude.toDouble()), 13f))
         }
     }
 
-    private fun showSelectedItem(data: Traffic) {
+    private fun showSelectedItem(data: TrafficList) {
 //        val intent = Intent (this@MainActivity, DetailUserActivity::class.java)
 //        intent.putExtra(DetailUserActivity.EXTRA_AVATAR, user.avatarUrl)
 //        intent.putExtra(DetailUserActivity.EXTRA_ID, user.id)

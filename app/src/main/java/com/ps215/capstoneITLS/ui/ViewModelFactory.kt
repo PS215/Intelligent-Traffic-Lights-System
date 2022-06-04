@@ -15,9 +15,9 @@ class ViewModelFactory private constructor(private val repository: Repository) :
         @Volatile
         private var instance: ViewModelFactory? = null
 
-        fun getInstance(context: Context): ViewModelFactory =
+        fun getInstance(): ViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(Injection.provideRepository(context)).apply {
+                instance ?: ViewModelFactory(Injection.provideRepository()).apply {
                     instance = this
                 }
             }

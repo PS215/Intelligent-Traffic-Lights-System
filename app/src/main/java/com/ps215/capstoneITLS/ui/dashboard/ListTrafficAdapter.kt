@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ps215.capstoneITLS.database.Traffic
+import com.ps215.capstoneITLS.database.model.TrafficList
 import com.ps215.capstoneITLS.databinding.ItemCardBinding
 
 class ListTrafficAdapter :
-    ListAdapter<Traffic, ListTrafficAdapter.ListViewHolder>(DiffCallback()) {
+    ListAdapter<TrafficList, ListTrafficAdapter.ListViewHolder>(DiffCallback()) {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -23,27 +23,27 @@ class ListTrafficAdapter :
 
     inner class ListViewHolder(private val binding: ItemCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: Traffic) {
+        fun bind(data: TrafficList) {
             binding.trafficNameTv.text = data.name
-            binding.roadNameTv.text = data.road
+            binding.roadNameTv.text = data.address
             binding.root.setOnClickListener {
                 onItemClickCallback.onItemClicked(data)
             }
         }
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<Traffic>() {
-        override fun areItemsTheSame(oldItem: Traffic, newItem: Traffic): Boolean {
+    class DiffCallback : DiffUtil.ItemCallback<TrafficList>() {
+        override fun areItemsTheSame(oldItem: TrafficList, newItem: TrafficList): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Traffic, newItem: Traffic): Boolean {
-            return oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: TrafficList, newItem: TrafficList): Boolean {
+            return oldItem._id == newItem._id
         }
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: Traffic)
+        fun onItemClicked(data: TrafficList)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {

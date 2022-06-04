@@ -1,16 +1,18 @@
 package com.ps215.capstoneITLS.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ps215.capstoneITLS.database.Traffic
+import com.ps215.capstoneITLS.database.model.TrafficList
 import com.ps215.capstoneITLS.databinding.FragmentDashboardBinding
 import com.ps215.capstoneITLS.ui.ViewModelFactory
+import com.ps215.capstoneITLS.ui.trafficdetail.TrafficDetailActivity
 
 class DashboardFragment : Fragment() {
 
@@ -38,31 +40,41 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        val factory = ViewModelFactory.getInstance(requireContext())
+        val factory = ViewModelFactory.getInstance()
         dashboardViewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]
-        dashboardViewModel.getAllTraffic()
+        dashboardViewModel.setTraffic()
         getTraffic()
+        showLoading(true)
     }
 
     private fun getTraffic() {
         val adapter = ListTrafficAdapter()
         binding.trafficRv.adapter = adapter
-        dashboardViewModel.getAllTraffic().observe(viewLifecycleOwner) {
+        dashboardViewModel.getTraffic().observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            showLoading(false)
         }
         adapter.setOnItemClickCallback(object : ListTrafficAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: Traffic) {
+            override fun onItemClicked(data: TrafficList) {
                 showSelectedItem(data)
             }
         })
     }
 
-    private fun showSelectedItem(data: Traffic) {
-//        val intent = Intent (this@MainActivity, DetailUserActivity::class.java)
-//        intent.putExtra(DetailUserActivity.EXTRA_AVATAR, user.avatarUrl)
-//        intent.putExtra(DetailUserActivity.EXTRA_ID, user.id)
-//        intent.putExtra(DetailUserActivity.EXTRA_USERNAME, user.login)
-//        startActivity(intent)
+    private fun showLoading(state: Boolean){
+        if (state){
+            binding.pBar.visibility = View.VISIBLE
+        }else{
+            binding.pBar.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun showSelectedItem(data: TrafficList) {
+        val intent = Intent (activity, TrafficDetailActivity::class.java)
+        intent.putExtra(TrafficDetailActivity.EXTRA_NAME, data.name)
+        intent.putExtra(TrafficDetailActivity.EXTRA_ID, data._id)
+        intent.putExtra(TrafficDetailActivity.EXTRA_ADDRESS, data.address)
+        activity?.startActivity(intent)
         Toast.makeText(activity, data.name + " Selected" , Toast.LENGTH_SHORT).show()
     }
 }
