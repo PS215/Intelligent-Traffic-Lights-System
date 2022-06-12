@@ -40,7 +40,7 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(requireContext())
         dashboardViewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]
         dashboardViewModel.setTraffic()
         getTraffic()

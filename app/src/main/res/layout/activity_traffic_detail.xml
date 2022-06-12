@@ -7,9 +7,69 @@
     tools:context=".ui.trafficdetail.TrafficDetailActivity">
 
     <TextView
+        android:id="@+id/title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/traffic_detail_activity"
+        android:layout_marginTop="36dp"
+        android:text="@string/traffic_density"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/density_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:textColor="@color/purple_500"
+        android:text="@string/num"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toTopOf="@+id/progress_bar" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:progressDrawable="@drawable/circle_progress"
+        android:indeterminateOnly="false"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/title_tv"
+        app:layout_constraintStart_toStartOf="@+id/title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/title_tv"
+        tools:progress="60" />
+
+    <Button
+        android:id="@+id/cctv_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:textAllCaps="false"
+        android:text="@string/open_cctv"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
+
+    <Button
+        android:id="@+id/scan_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/scan_road_density"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/cctv_btn"
+        app:layout_constraintStart_toStartOf="@+id/cctv_btn"
+        app:layout_constraintTop_toBottomOf="@+id/cctv_btn" />
+
+    <ProgressBar
+        android:id="@+id/load_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

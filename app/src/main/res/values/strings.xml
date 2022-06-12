@@ -8,4 +8,8 @@
     <string name="road_name">Road Name</string>
     <string name="traffic_light_list">Traffic Light List</string>
     <string name="traffic_detail_activity">this is Traffic Detail Activity</string>
+    <string name="num">num</string>
+    <string name="traffic_density">Traffic Density</string>
+    <string name="scan_road_density">Scan Road Density</string>
+    <string name="open_cctv">Open CCTV</string>
 </resources>

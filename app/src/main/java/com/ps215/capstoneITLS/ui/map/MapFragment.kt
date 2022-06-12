@@ -1,15 +1,12 @@
 package com.ps215.capstoneITLS.ui.map
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -22,6 +19,7 @@ import com.ps215.capstoneITLS.R
 import com.ps215.capstoneITLS.data.model.TrafficList
 import com.ps215.capstoneITLS.databinding.FragmentMapBinding
 import com.ps215.capstoneITLS.ui.ViewModelFactory
+import com.ps215.capstoneITLS.ui.trafficdetail.TrafficDetailActivity
 
 
 class MapFragment : Fragment() {
@@ -47,34 +45,10 @@ class MapFragment : Fragment() {
         googleMap.uiSettings.isIndoorLevelPickerEnabled = true
         googleMap.uiSettings.isCompassEnabled = true
         googleMap.uiSettings.isMapToolbarEnabled = true
-        googleMap.uiSettings.isMyLocationButtonEnabled = true
-
-
-        if (ContextCompat.checkSelfPermission(
-                requireActivity().applicationContext,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            googleMap.isMyLocationEnabled = true
-        } else {
-            requestPermissionLauncher(googleMap).launch(Manifest.permission.ACCESS_FINE_LOCATION)
-        }
 
         setupViewModel(googleMap)
 
     }
-
-    @SuppressLint("MissingPermission")
-    private val requestPermissionLauncher  = { googleMap : GoogleMap ->
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                googleMap.isMyLocationEnabled = true
-            }
-        }
-    }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -99,7 +73,7 @@ class MapFragment : Fragment() {
     }
 
     private fun setupViewModel(googleMap: GoogleMap) {
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(requireContext())
         mapViewModel = ViewModelProvider(this, factory)[MapViewModel::class.java]
         mapViewModel.setTraffic()
         getTraffic(googleMap)
@@ -107,27 +81,34 @@ class MapFragment : Fragment() {
 
     private fun getTraffic(googleMap: GoogleMap) {
         mapViewModel.getTraffic().observe(viewLifecycleOwner) {
-            for (i in it.indices){
-                googleMap.addMarker(MarkerOptions()
-                    .position(LatLng(it[i].latitude.toDouble(), it[i].longitude.toDouble()))
-                    .title(it[i].name)
-                    .snippet(it[i].address))
-
-                googleMap.setOnInfoWindowClickListener() {
-                    Toast.makeText(activity, it.title + " Selected" , Toast.LENGTH_SHORT).show()
-                }
+            for (i in 0 until it.size){
+                addMarker(it[i], googleMap)
             }
 
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(it[0].latitude.toDouble(), it[0].longitude.toDouble()), 13f))
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(it[0].latitude.toDouble(), it[0].longitude.toDouble()), 15f))
         }
     }
 
+    private fun addMarker(data: TrafficList, googleMap: GoogleMap){
+        googleMap.addMarker(MarkerOptions()
+            .position(LatLng(data.latitude.toDouble(), data.longitude.toDouble()))
+            .title(data.name)
+            .snippet(data.address))!!
+
+        googleMap.setOnInfoWindowClickListener{
+            showSelectedItem(data)
+            Toast.makeText(activity, data.name + " Selected" , Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
     private fun showSelectedItem(data: TrafficList) {
-//        val intent = Intent (this@MainActivity, DetailUserActivity::class.java)
-//        intent.putExtra(DetailUserActivity.EXTRA_AVATAR, user.avatarUrl)
-//        intent.putExtra(DetailUserActivity.EXTRA_ID, user.id)
-//        intent.putExtra(DetailUserActivity.EXTRA_USERNAME, user.login)
-//        startActivity(intent)
+        val intent = Intent (activity, TrafficDetailActivity::class.java)
+        intent.putExtra(TrafficDetailActivity.EXTRA_NAME, data.name)
+        intent.putExtra(TrafficDetailActivity.EXTRA_ID, data._id)
+        intent.putExtra(TrafficDetailActivity.EXTRA_ADDRESS, data.address)
+        activity?.startActivity(intent)
         Toast.makeText(activity, data.name + " Selected" , Toast.LENGTH_SHORT).show()
     }
 }

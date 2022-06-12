@@ -3,18 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/drawable/circle_progress.xml" value="0.1145" />
         <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.228" />
         <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/drawable/ic_baseline_traffic_24.xml" value="0.228" />
         <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/drawable/ic_right_icon.xml" value="0.228" />
         <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/drawable/login_bg.xml" value="0.215" />
-        <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/layout/activity_main.xml" value="0.228125" />
         <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/layout/activity_traffic_detail.xml" value="0.2421875" />
         <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/layout/fragment_dashboard.xml" value="0.2421875" />
         <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/layout/fragment_history.xml" value="0.228125" />
         <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/layout/fragment_map.xml" value="0.2421875" />
         <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
-        <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/layout/item_card.xml" value="0.4" />
+        <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/layout/item_card.xml" value="0.264" />
         <entry key="..\:/AZIZ/ANDROID/_Bangkit 2022/ITLS/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2421875" />
       </map>
     </option>

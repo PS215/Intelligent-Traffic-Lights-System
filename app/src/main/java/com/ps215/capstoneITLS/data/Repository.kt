@@ -4,21 +4,31 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ps215.capstoneITLS.api.ApiConfig
+import com.ps215.capstoneITLS.data.database.Traffic
+import com.ps215.capstoneITLS.data.database.TrafficDao
 import com.ps215.capstoneITLS.data.model.TrafficList
 import com.ps215.capstoneITLS.data.model.TrafficResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Repository() {
+class Repository(private val trafficDao: TrafficDao) {
     val listTraffics = MutableLiveData<ArrayList<TrafficList>>()
+
+    fun getDensity(newid: String): LiveData<Traffic> = trafficDao.getDensity(newid)
+
+//    suspend fun updateDensity(newid: String, newdensity:Int) = trafficDao.updateDensity(newid, newdensity)
+
+    suspend fun updateDensity(traffic: Traffic) {
+        trafficDao.updateDensity(traffic)
+    }
 
     companion object {
         @Volatile
         private var instance: Repository? = null
-        fun getInstance(): Repository =
+        fun getInstance(trafficDao: TrafficDao): Repository =
             instance ?: synchronized(this) {
-                instance ?: Repository().apply { instance = this }
+                instance ?: Repository(trafficDao).apply { instance = this }
             }
     }
 
