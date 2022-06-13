@@ -1,5 +1,5 @@
 # Intelligent-Traffic-Lights-System
-PS215's Bangkit 2022 Capstone Android Repository
+PS215's Bangkit 2022 Capstone Repository
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/61930704/173266936-d676ce6c-b3fd-428e-822c-b8c542fa8cd8.png" width="250">
