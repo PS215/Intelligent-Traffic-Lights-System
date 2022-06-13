@@ -3,6 +3,7 @@ package com.ps215.capstoneITLS.ui.trafficdetail
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -85,14 +86,15 @@ class TrafficDetailActivity : AppCompatActivity() {
             val myFile = File(currentPhotoPath)
             getFile = myFile
 
-//            val result = BitmapFactory.decodeFile(getFile?.path)
+            val result = BitmapFactory.decodeFile(getFile?.path)
         }
     }
 
+    //Still need Machine Learning implementation
     private fun uploadImage() {
         showLoading(true)
         if (getFile != null) {
-//            val file = reduceFileImage(getFile as File)
+            val file = reduceFileImage(getFile as File)
             val rand = (30..100).random()
             val id = intent.getStringExtra(EXTRA_ID)
             val traffic = id?.let { it1 -> Traffic(it1, rand) }
