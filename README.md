@@ -17,7 +17,7 @@ PS215's Bangkit 2022 Capstone Repository
 ### Setup Project
 - Clone this repository.
 ```cmd
-git clone https://github.com/Xaplose/fudery.git
+https://github.com/PS215/Intelligent-Traffic-Lights-System.git
 ```
 - Open and build the project on Android Studio
 - Import the Machine Learning model [here](https://drive.google.com/file/d/1E7XAk0_Rtah9BP2b1dqmKJ9PcXpDvFqv/view)
